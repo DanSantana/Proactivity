@@ -6,9 +6,9 @@ import { useState } from 'react';
 function App() {
 
   let initialState = [
-    { id: 1, description: "Painting Wall" , title:"Painting", priority: GetPriority('1') },
-    { id: 2, description: "Repair Wall" , title:"Repair", priority:GetPriority('2')  },
-    { id: 3, description: "Install TV", title:"Install", priority:GetPriority('3')  },
+    { id: 1, description: "Painting Wall" , title:"Painting", priority: '1' },
+    { id: 2, description: "Repair Wall" , title:"Repair", priority:'2'  },
+    { id: 3, description: "Install TV", title:"Install", priority:'3' },
   ];
 
   const[activities, setActivities] = useState(initialState);
@@ -18,9 +18,9 @@ function App() {
     e.preventDefault();
 
     const activity = {
-      id: document.getElementById('id').value,    
+      id: document.getElementById('id').value,   
       title: document.getElementById('title').value,
-      priority: GetPriority(document.getElementById('priority').value),
+      priority: document.getElementById('priority').value,
       description: document.getElementById('description').value
     };
 
@@ -29,16 +29,16 @@ function App() {
   }
 
 
-  function GetPriorityIcon(param){
+  function priorityStyle(param, icon){
     switch(param){
-      case 'Low':
-        return "smile"
-      case 'Regular':
-        return "meh"
-      case 'Right':
-        return "frown"
+      case '1':
+        return icon ?'smile' : 'success';
+      case '2':
+        return icon?  'meh':'warning' ;
+      case '3':
+        return icon? 'frown' : 'danger';
       default:
-        return 'grimace'
+        return icon? 'grimace' :'primary';
     } 
   }
 
@@ -51,9 +51,18 @@ function App() {
       case '3':
       return "Right"
       default:
-        return 'Undefined'
+      return 'Undefined'
     }
    }
+
+   function deleteActivity(id){
+    const filteredactivities = activities.filter(act=> act.id !== id);
+    setActivities([...filteredactivities]);
+   }
+
+
+
+
 
 
 
@@ -63,14 +72,18 @@ function App() {
       <form className="row g-3">
         <div className="col-md-6">
           <label className="form-label">Activity ID</label>
-          <input type="text" className="form-control" id="id" />
+          <input type="text"
+           className="form-control" 
+           id="id" 
+           value={Math.max.apply(Math,activities.map(item=>item.id))+1} 
+           readOnly/>
         </div>
 
         <div className="col-md-6">
         <label className="form-label">Priority :</label>
           <select id="priority" className="form-select">
             <option defaultValue="0">Choose...</option>
-            <option value='1' >Low</option>
+            <option value='1'>Low</option>
             <option value='2'>Regular</option>
             <option value='3'>Hight</option>
           </select>
@@ -102,7 +115,7 @@ function App() {
         {activities.map((act) => (
           <div
             key={act.id}
-            className="card mb-2 shadow-sm"
+            className={"card mb-2 shadow-sm border border-"+priorityStyle(act.priority)}
      
           >
             <div className="card-body">
@@ -114,9 +127,9 @@ function App() {
                   -  {act.title}
                 </h5>
                 <h6 >Priority:
-                  <span className='ms-1 text-black'>
-                    <i className={'me-1 fa-solid fa-face-'+GetPriorityIcon(act.priority)}></i>
-                    {act.priority}
+                  <span className={'ms-1 text-'+priorityStyle(act.priority)}>
+                    <i className={'me-1 fa-solid fa-face-'+priorityStyle(act.priority,true)}></i>
+                    {GetPriority(act.priority)}
                   </span>
                 </h6>
               </div>
@@ -126,7 +139,7 @@ function App() {
                   <i className="fas fa-pen me-2"></i>
                   Edit
                   </button>
-                <button className="btn btn-outline-danger me-2 btn-sm">
+                <button className="btn btn-outline-danger me-2 btn-sm" onClick={()=>deleteActivity(act.id)}>
                   <i className="fas fa-trash me-2">
                     </i>
                     Delete

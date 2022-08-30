@@ -6,9 +6,9 @@ import { useState } from 'react';
 function App() {
 
   let initialState = [
-    { id: 1, description: "Painting Wall" , title:"Painting", priority:'Low' },
-    { id: 2, description: "Repair Wall" , title:"Repair", priority:'Regular' },
-    { id: 3, description: "Install TV", title:"Install", priority:'Hight'  },
+    { id: 1, description: "Painting Wall" , title:"Painting", priority: GetPriority('1') },
+    { id: 2, description: "Repair Wall" , title:"Repair", priority:GetPriority('2')  },
+    { id: 3, description: "Install TV", title:"Install", priority:GetPriority('3')  },
   ];
 
   const[activities, setActivities] = useState(initialState);
@@ -31,14 +31,14 @@ function App() {
 
   function GetPriorityIcon(param){
     switch(param){
-      case '1':
+      case 'Low':
         return "smile"
-      case '2':
+      case 'Regular':
         return "meh"
-      case '3':
+      case 'Right':
         return "frown"
       default:
-        return 'Undefined'
+        return 'grimace'
     } 
   }
 
@@ -52,10 +52,8 @@ function App() {
       return "Right"
       default:
         return 'Undefined'
-    } 
-
-
-  }
+    }
+   }
 
 
 
@@ -72,9 +70,9 @@ function App() {
         <label className="form-label">Priority :</label>
           <select id="priority" className="form-select">
             <option defaultValue="0">Choose...</option>
-            <option value="1">Low</option>
-            <option value="2">Regular</option>
-            <option value="3">Hight</option>
+            <option value='1' >Low</option>
+            <option value='2'>Regular</option>
+            <option value='3'>Hight</option>
           </select>
        </div>
 
@@ -101,9 +99,9 @@ function App() {
       </form>
 
       <div className="mt-2">
-        {activities.map((comp) => (
+        {activities.map((act) => (
           <div
-            key={comp.id}
+            key={act.id}
             className="card mb-2 shadow-sm"
      
           >
@@ -111,18 +109,18 @@ function App() {
               <div className="d-flex justify-content-between">
                 <h5 className="card-title">
                   <span className="badge rounded-pill bg-secondary me-1">
-                    {comp.id}
+                    {act.id}
                   </span>
-                  -  {comp.title}
+                  -  {act.title}
                 </h5>
                 <h6 >Priority:
                   <span className='ms-1 text-black'>
-                    <i className="me-1 fa-solid fa-face-smile"></i>
-                    {comp.priority}
+                    <i className={'me-1 fa-solid fa-face-'+GetPriorityIcon(act.priority)}></i>
+                    {act.priority}
                   </span>
                 </h6>
               </div>
-              <p className="card-text">{comp.description}</p>
+              <p className="card-text">{act.description}</p>
              <div className="d-flex justify-content-end pt-2 m-0 border-top"> 
                 <button className="btn btn-outline-primary me-2 btn-sm">
                   <i className="fas fa-pen me-2"></i>

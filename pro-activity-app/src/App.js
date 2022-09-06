@@ -39,8 +39,6 @@ function App() {
     setActivity({id:0});
   }
 
-
-
   return (
     <>
       <ActivityForm 

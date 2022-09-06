@@ -92,7 +92,7 @@ export default function ActivityForm(props) {
           <hr/>
         </div>
 
-        <div className="col-12">
+        <div className="col-12 mt-0">
           {activity.id === 0 ? (
             <button className="btn btn-outline-secondary" type="submit">
               {" "}

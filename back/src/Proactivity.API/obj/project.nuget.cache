@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "qDl71LjUR43ccjWyKU87weMqK+SpmUHpMSO+8haszCByBGTTBFi8Oquo4nyzF3YY5fZIB4PMGfUHXePzhDi6jg==",
+  "success": true,
+  "projectFilePath": "D:\\DevLocalRepo\\React\\Proactivity\\back\\src\\Proactivity.API\\Proactivity.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\dange\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\dange\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\dange\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\dange\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\dange\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\dange\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}
